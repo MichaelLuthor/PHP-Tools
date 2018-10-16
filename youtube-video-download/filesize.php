@@ -14,11 +14,13 @@ try {
     $ch = curl_init($url);
     curl_setopt($ch, CURLOPT_HEADER, 1);
     curl_setopt($ch, CURLOPT_NOBODY, 1);
-    curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
     curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
     $sizeResponse = curl_exec($ch);
+    if ( false === $sizeResponse ) {
+        throw new \Exception("CURL 请求失败 :".curl_error($ch));
+    }
     curl_close($ch);
     
     $regex = '/Content-Length:\s(?P<size>[0-9].+?)\s/';
