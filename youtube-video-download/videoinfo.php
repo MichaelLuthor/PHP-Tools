@@ -7,7 +7,7 @@ use Facebook\WebDriver\Exception\NoSuchElementException;
 ini_set('display_errors', 'On');
 error_reporting(E_ALL);
 
-require 'youtube-video-download/php-webdriver-1.6.0/autoloader.php';
+require __DIR__.'/php-webdriver-1.6.0/autoloader.php';
 
 $driver = RemoteWebDriver::create(
     'http://localhost:4444/wd/hub', 
