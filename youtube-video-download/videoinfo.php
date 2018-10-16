@@ -3,10 +3,11 @@ use Facebook\WebDriver\Remote\RemoteWebDriver;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
 use Facebook\WebDriver\WebDriverBy;
 use Facebook\WebDriver\Exception\NoSuchElementException;
-require 'youtube-video-download/php-webdriver-1.6.0/autoloader.php';
 
 ini_set('display_errors', 'On');
 error_reporting(E_ALL);
+
+require 'youtube-video-download/php-webdriver-1.6.0/autoloader.php';
 
 $driver = RemoteWebDriver::create(
     'http://localhost:4444/wd/hub', 
