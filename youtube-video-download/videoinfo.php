@@ -1,4 +1,7 @@
 <?php
+/**
+ * @param $id youtube视频ID
+ */
 use Facebook\WebDriver\Remote\RemoteWebDriver;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
 use Facebook\WebDriver\WebDriverBy;
@@ -34,7 +37,7 @@ try {
 }
 
 $urlInput = $driver->findElement(WebDriverBy::id('sf_url'));
-$urlInput->sendKeys("https://www.youtube.com/watch?v=zyMBULOtyLs");
+$urlInput->sendKeys("https://www.youtube.com/watch?v={$_GET['id']}");
 
 $checkBtn = $driver->findElement(WebDriverBy::id('sf_submit'));
 $checkBtn->click();
