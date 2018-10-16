@@ -9,7 +9,7 @@ $response = array(
 );
 
 try {
-    $url = base64_decode(base64_decode($_GET['url']));
+    $url = urldecode(base64_decode(base64_decode($_GET['url'])));
     
     $ch = curl_init($url);
     curl_setopt($ch, CURLOPT_HEADER, 1);
