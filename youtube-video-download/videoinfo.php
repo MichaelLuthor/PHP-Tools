@@ -3,15 +3,27 @@ use Facebook\WebDriver\Remote\RemoteWebDriver;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
 use Facebook\WebDriver\WebDriverBy;
 use Facebook\WebDriver\Exception\NoSuchElementException;
+use Facebook\WebDriver\Chrome\ChromeOptions;
 
 ini_set('display_errors', 'On');
 error_reporting(E_ALL);
 
 require __DIR__.'/php-webdriver-1.6.0/autoloader.php';
 
+$chromeCapb = DesiredCapabilities::chrome();
+
+$options = new ChromeOptions();
+$options->setBinary('/usr/bin/google-chrome');
+$options->addArguments(array(
+    '--headless',
+    '--disable-gpu',
+    '--no-sandbox'
+));
+$chromeCapb->setCapability(ChromeOptions::CAPABILITY, $options);
+
 $driver = RemoteWebDriver::create(
     'http://localhost:4444/wd/hub', 
-    DesiredCapabilities::chrome(),
+    $chromeCapb,
     1000 * 60 * 5, # Set timeout for the connect phase to remote Selenium WebDriver server
     1000 * 60 * 5  # Set the maximum time of a request to remote Selenium WebDriver server
 );
