@@ -23,17 +23,24 @@ try {
     curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
     
     $sizeResponse = curl_exec($ch);
-    
     if ( 0 !== curl_errno($ch) ) {
         throw new \Exception("CURL 请求失败 :".curl_error($ch));
     }
-    
     if ( false === $sizeResponse ) {
         throw new \Exception("CURL 请求失败 :".curl_error($ch));
     }
+    
+    $sizeResponse = explode("\n", str_replace("\r", '', trim($sizeResponse)));
+    foreach ( $sizeResponse as $line ) {
+        if ( 'Content-Length:' === substr($line, 0, strlen('Content-Length:')) ) {
+            echo $line;
+            exit();
+        }
+    }
+    
     curl_close($ch);
     
-    $regex = '/Content-Length:\s(?P<size>[0-9].+?)\s/';
+    $regex = '/Content-Length:\s(?P<size>[0-9].+?)\s/is';
     preg_match($regex, $sizeResponse, $matche);
     if ( !isset($matche['size']) || 0 === $matche['size']*1 ) {
         throw new \Exception('Failed to get video size form youtube');
