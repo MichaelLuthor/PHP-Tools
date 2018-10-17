@@ -31,22 +31,20 @@ try {
     }
     
     $sizeResponse = explode("\n", str_replace("\r", '', trim($sizeResponse)));
+    $filesize = 0;
     foreach ( $sizeResponse as $line ) {
         if ( 'Content-Length:' === substr($line, 0, strlen('Content-Length:')) ) {
-            echo $line;
+            $size = intval(trim(substr($line, strlen('Content-Length:'))));
+            if ( 0 === $size ) {
+                continue;
+            }
+            $filesize = $size;
         }
     }
     
-    exit();
     curl_close($ch);
     
-    $regex = '/Content-Length:\s(?P<size>[0-9].+?)\s/is';
-    preg_match($regex, $sizeResponse, $matche);
-    if ( !isset($matche['size']) || 0 === $matche['size']*1 ) {
-        throw new \Exception('Failed to get video size form youtube');
-    }
-    
-    $response['data'] = ['size'=>($matche['size']*1)];
+    $response['data'] = ['size'=>$filesize];
 } catch ( Exception $e ) {
     $response['success'] = false;
     $response['message'] = $e->getMessage();
