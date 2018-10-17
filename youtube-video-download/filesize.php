@@ -22,10 +22,6 @@ try {
     curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
     curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
     
-    curl_setopt($ch, CURLOPT_PROXY, '127.0.0.1');
-    curl_setopt($ch, CURLOPT_PROXYPORT, 1080);
-    curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_HTTP);
-    
     $sizeResponse = curl_exec($ch);
     
     if ( 0 !== curl_errno($ch) ) {
