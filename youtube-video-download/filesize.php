@@ -34,10 +34,10 @@ try {
     foreach ( $sizeResponse as $line ) {
         if ( 'Content-Length:' === substr($line, 0, strlen('Content-Length:')) ) {
             echo $line;
-            exit();
         }
     }
     
+    exit();
     curl_close($ch);
     
     $regex = '/Content-Length:\s(?P<size>[0-9].+?)\s/is';
