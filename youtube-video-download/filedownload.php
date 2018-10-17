@@ -16,4 +16,11 @@ if ( 0 !== curl_errno($ch) ) {
 }
 curl_close($ch);
 fclose($videoFile);
-echo json_encode(array('success'=>true,'message'=>'','data'=>array('url'=>"http://outtools.bwh1.suanhetao.com/youtube-video-download/tmp-videos/{$videoId}")));
+echo json_encode(array(
+    'success'=>true,
+    'message'=>'',
+    'data'=>array(
+        'url'=> "http://outtools.bwh1.suanhetao.com/youtube-video-download/tmp-videos/{$videoId}",
+        'id' => $videoId,
+    )
+));
