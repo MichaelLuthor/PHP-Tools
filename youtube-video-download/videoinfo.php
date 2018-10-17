@@ -49,7 +49,12 @@ do {
     try {
         $resultBox = $driver->findElement(WebDriverBy::className('def-btn-box'));
         $defaultDownloadLink = $resultBox->findElement(WebDriverBy::tagName('a'));
+        
         $response['default_download_url'] = $defaultDownloadLink->getAttribute('href');
+        
+        $defaultDownloadLinkQuery = parse_url($response['default_download_url'], PHP_URL_QUERY);
+        parse_str($defaultDownloadLinkQuery, $defaultDownloadLinkQuery);
+        $response['mime'] = $defaultDownloadLinkQuery['mime'];
         break;
     } catch ( NoSuchElementException $e ) {
         usleep(100);
