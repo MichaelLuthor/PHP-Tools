@@ -37,7 +37,7 @@ try {
 }
 
 $urlInput = $driver->findElement(WebDriverBy::id('sf_url'));
-$urlInput->sendKeys("https://www.youtube.com/watch?v={$_GET['id']}");
+$urlInput->sendKeys("https://www.youtube.com/watch?v={$_POST['id']}");
 
 $checkBtn = $driver->findElement(WebDriverBy::id('sf_submit'));
 $checkBtn->click();
