@@ -1,0 +1,16 @@
+{
+    "name": "michael/demo",
+    "description": "this is a demo",
+    "type": "lib",
+    "require": {
+        "phpmailer/phpmailer": "^6.0"
+    },
+    "license": "mit",
+    "authors": [
+        {
+            "name": "michael",
+            "email": "michaelluthor@163.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}
