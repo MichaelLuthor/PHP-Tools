@@ -1,5 +1,5 @@
 {
-    "name": "michael/demo",
+    "name": "michaelexample/demo",
     "description": "this is a demo",
     "type": "lib",
     "require": {
